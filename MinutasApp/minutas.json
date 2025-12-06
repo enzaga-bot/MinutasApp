@@ -1,0 +1,35 @@
+
+[
+    {
+        "titulo": "Reunión de Seguimiento de Plan de Mercadotecnia 2026",
+        "fecha": "Viernes 5 de Diciembre de 2025",
+        "hora": "10:30am - 12:30 am",
+        "ordenDelDia": [
+            "Presentación de Proveedores",
+            "Presentación de Proyectos",
+            "Presupuesto 2026",
+            "Resultados 2025"
+        ], "asistentes": [
+            "Daniel Hernández",
+            "Areliz Tostado",
+            "Omar Quiroz",
+            "Hèctor Torres"
+        ]
+    },
+    {
+        "titulo": "Reunión de Planeación Diciembre 2025",
+        "fecha": "Viernes 12 de Diciembre de 2025",
+        "hora": "10:30am - 12:30 am",
+        "ordenDelDia": [
+            "Sorteo Anual",
+            "Estrategia RRSS",
+            "Reporte de Tráfico Web",
+            "Tráfico RRSS"
+        ], "asistentes": [
+            "Daniel Hernández",
+            "Areliz Tostado",
+            "Omar Quiroz",
+            "Hèctor Torres"
+        ]
+    }
+]
