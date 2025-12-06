@@ -36,13 +36,16 @@ struct MinutasView: View {
                     .padding(.top, 16)
                 
                 //Botón Nueva Minuta
-                Button(action: agregarMinutaDemo) {
-                    HStack {
+                NavigationLink(destination: NuevaMinutaView()
+                ){
+                    HStack{
                         Image(systemName: "plus.circle.fill")
                         Text("Nueva Minuta")
                     }//HStack
-                }//Botón
+                }//NavigationLink
+                //Botón
                 .padding(.bottom, 8)
+                
                 
                 // Carga de Minutas
                 List(minutas, id: \.titulo) { minuta in
