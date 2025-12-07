@@ -2,16 +2,25 @@
 //  MinutasAppApp.swift
 //  MinutasApp
 //
-//  Created by MTW_000 on 29/11/25.
-//
 
 import SwiftUI
 
 @main
 struct MinutasAppApp: App {
+    
+    @State private var isLoggedIn = false
+    
     var body: some Scene {
         WindowGroup {
-            LoginView()
+            if isLoggedIn {
+                MinutasView(onLogout: {
+                    isLoggedIn = false
+                })
+            } else {
+                LoginView(onLogin: {
+                    isLoggedIn = true
+                })
+            }
         }
     }
 }

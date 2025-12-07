@@ -1,0 +1,12 @@
+//
+//  ConfigDebug.xcconfig
+//  MinutasApp
+//
+//  Created by Enrique Zavala Garcia on 06/12/25.
+//
+
+// Configuration settings file format documentation can be found at:
+// https://developer.apple.com/documentation/xcode/adding-a-build-configuration-file-to-your-project
+
+SLASH = /
+API_BASE_URL = https:$(SLASH)/api.ejemplo.com

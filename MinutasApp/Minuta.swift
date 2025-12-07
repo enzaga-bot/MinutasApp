@@ -15,5 +15,5 @@ struct Minuta: Codable {
     let hora: String
     let ordenDelDia: [String]
     let asistentes: [String]
-    
+    var acuerdos: [String]? = nil
 }

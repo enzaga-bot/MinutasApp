@@ -4,80 +4,104 @@
 //
 //  Created by Enrique Zavala Garcia on 03/12/25.
 //
+//
 
 import SwiftUI
 
-
 struct MinutaDetailView: View {
     
-    //Recibe minuta completa
     let minuta: Minuta
     
-
     var body: some View {
-        
-        VStack (alignment: .leading, spacing: 16) {
-            //Título de la minuta
-            Text(minuta.titulo)
-                .font(.title2)
-                .fontWeight(.semibold)
-            
-            // Fecha y Hora (Maquetados)
-            Text("Fecha: \(minuta.fecha)").font(.subheadline)
-            
-            Text("Hora: \(minuta.hora)")
+        ScrollView {
+            VStack(alignment: .leading, spacing: 12) {
+                
+                // Título
+                Text(minuta.titulo)
+                    .font(.title2)
+                    .fontWeight(.semibold)
+                    .padding(.bottom, 8)
+                
+                // Fecha
+                HStack {
+                    Image(systemName: "calendar")
+                    Text(minuta.fecha)
+                    Spacer()
+                }
                 .font(.subheadline)
-            
-            Divider()
-            
-// Órden del día
-            Text("Órden del Día")
-                .font(.headline)
-            
-            ForEach(minuta.ordenDelDia, id: \.self) { punto in
-                HStack (alignment: .top, spacing: 8) {
-                    Text("•")
-                    Text(punto)
+                
+                // Hora
+                HStack {
+                    Image(systemName: "clock")
+                    Text(minuta.hora)
+                    Spacer()
+                }
+                .font(.subheadline)
+                
+                Divider()
+                    .padding(.vertical, 8)
+                
+                // Orden del día
+                Text("Orden del día")
+                    .font(.headline)
+                
+                ForEach(minuta.ordenDelDia, id: \.self) { punto in
+                    HStack(alignment: .top, spacing: 8) {
+                        Text("•")
+                        Text(punto)
+                            .font(.body)
+                    }
+                }
+                
+                // Asistentes
+                Text("Asistentes")
+                    .font(.headline)
+                    .padding(.top, 16)
+                
+                ForEach(minuta.asistentes, id: \.self) { asistente in
+                    Text("• \(asistente)")
                         .font(.body)
-                } //HStack
-            } // ForEach
-            
-            
-//Asistentes
-            Text("Asistentes")
-                .font(.headline)
-                .padding(.top, 16)
-            
-            ForEach (minuta.asistentes, id: \.self) { asistente in
-                Text("• \(asistente)")
-                    .font(.body)
-            }//ForEach
-            
-            Spacer()
-            
-        }//VStack
-        .padding()
-        
-    } // body
-} // struct
+                }
+                
+                // Acuerdos (solo si existen)
+                if let acuerdos = minuta.acuerdos, !acuerdos.isEmpty {
+                    Text("Acuerdos")
+                        .font(.headline)
+                        .padding(.top, 16)
+                    
+                    ForEach(acuerdos, id: \.self) { acuerdo in
+                        Text("• \(acuerdo)")
+                            .font(.body)
+                    }
+                }
+                
+                Spacer()
+            }
+            .padding()
+        }
+        .navigationTitle("Detalle")
+        .navigationBarTitleDisplayMode(.inline)
+    }
+}
 
 #Preview {
-    let ejemplo = Minuta(
-        titulo: "titulo ejemplo minuta",
-        fecha: "fecha ejemplo minuta",
-        hora: "hora ejemplo minuta",
-        ordenDelDia: [
-        "Orden del Día Ejemplo 01",
-        "Orden del Día Ejemplo 02",
-        "Orden del Día Ejemplo 03",
-        "Orden del Día Ejemplo 04"
-        ],
-        asistentes: [
-        "Asistente Ejemplo 01",
-        "Asistente Ejemplo 02",
-        "Asistente Ejemplo 03",
-        "Asistente Ejemplo 04"
-        ]
-    )//Minuta
-    MinutaDetailView(minuta: ejemplo)
+    MinutaDetailView(
+        minuta: Minuta(
+            titulo: "Reunión de ejemplo",
+            fecha: "Viernes 5 de Diciembre de 2025",
+            hora: "10:30am - 11:30am",
+            ordenDelDia: [
+                "Punto 1",
+                "Punto 2"
+            ],
+            asistentes: [
+                "Persona 1",
+                "Persona 2"
+            ],
+            acuerdos: [
+                "Acuerdo 1",
+                "Acuerdo 2"
+            ]
+        )
+    )
 }

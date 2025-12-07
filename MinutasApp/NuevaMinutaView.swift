@@ -9,32 +9,90 @@ import SwiftUI
 
 struct NuevaMinutaView: View {
     
+    @Environment(\.dismiss) private var dismiss
+    
+    // Callback que recibe la nueva minuta
+    let onGuardar: (Minuta) -> Void
+    
     @State private var fecha: String = ""
     @State private var hora: String = ""
     @State private var asistentesTexto: String = ""
+    @State private var puntosTexto: String = ""
+    @State private var acuerdosTexto: String = ""
     
     var body: some View {
-        
         NavigationView {
             Form {
-                Section(header: Text("Datos Generales")) {
+                Section(header: Text("Datos generales")) {
                     TextField("Fecha", text: $fecha)
                     TextField("Hora", text: $hora)
-                }//Section
+                }
                 
                 Section(header: Text("Asistentes")) {
-                    TextField("Separa los Nombres por comas", text: $asistentesTexto)
-                }//Section
-            }//Form
-            .navigationTitle("Nueva Minuta")
-        }//NavigationView
+                    TextField("Escribe los nombres separados por coma", text: $asistentesTexto)
+                }
+                
+                Section(header: Text("Puntos / Orden del día")) {
+                    TextEditor(text: $puntosTexto)
+                        .frame(minHeight: 80)
+                }
+                
+                Section(header: Text("Acuerdos")) {
+                    TextEditor(text: $acuerdosTexto)
+                        .frame(minHeight: 80)
+                }
+                
+                Section {
+                    Button(action: guardarMinuta) {
+                        HStack {
+                            Spacer()
+                            Text("Guardar minuta")
+                                .fontWeight(.semibold)
+                            Spacer()
+                        }
+                    }
+                }
+            }
+            .navigationTitle("Nueva minuta")
+        }
+    }
+    
+    private func guardarMinuta() {
+        let fechaLimpia = fecha.trimmingCharacters(in: .whitespacesAndNewlines)
         
-    }//body
-    
-    
-} //NuevaMinutaView
-
+        let tituloGenerado = fechaLimpia.isEmpty
+            ? "Minuta sin título"
+            : "Minuta del \(fechaLimpia)"
+        
+        let asistentes = asistentesTexto
+            .split(separator: ",")
+            .map { $0.trimmingCharacters(in: .whitespacesAndNewlines) }
+            .filter { !$0.isEmpty }
+        
+        let puntos = puntosTexto
+            .split(whereSeparator: \.isNewline)
+            .map { String($0).trimmingCharacters(in: .whitespacesAndNewlines) }
+            .filter { !$0.isEmpty }
+        
+        let acuerdosArray = acuerdosTexto
+            .split(whereSeparator: \.isNewline)
+            .map { String($0).trimmingCharacters(in: .whitespacesAndNewlines) }
+            .filter { !$0.isEmpty }
+        
+        let nuevaMinuta = Minuta(
+            titulo: tituloGenerado,
+            fecha: fechaLimpia,
+            hora: hora,
+            ordenDelDia: puntos,
+            asistentes: asistentes,
+            acuerdos: acuerdosArray.isEmpty ? nil : acuerdosArray
+        )
+        
+        onGuardar(nuevaMinuta)
+        dismiss()
+    }
+}
 
 #Preview {
-    NuevaMinutaView()
+    NuevaMinutaView(onGuardar: { _ in })
 }
