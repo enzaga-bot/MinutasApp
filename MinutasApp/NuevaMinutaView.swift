@@ -110,3 +110,5 @@ struct NuevaMinutaView: View {
 #Preview {
     NuevaMinutaView(onGuardar: { _ in })
 }
+
+

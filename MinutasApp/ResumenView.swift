@@ -31,3 +31,6 @@ struct ResumenView: View {
 #Preview {
     ResumenView()
 }
+
+
+

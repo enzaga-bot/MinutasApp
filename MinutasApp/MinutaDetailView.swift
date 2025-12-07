@@ -103,3 +103,5 @@ struct MinutaDetailView: View {
         )
     )
 }
+
+
