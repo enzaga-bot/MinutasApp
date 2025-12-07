@@ -1,4 +1,5 @@
 
+
 MinutasApp
 
 Aplicación iOS desarrollada en Swift para gestionar minutas y órdenes del día.  
@@ -118,3 +119,7 @@ Variables de configuración (API_BASE_URL)
   ```text
   SLASH = /
   API_BASE_URL = https:$(SLASH)/api.ejemplo.com
+
+
+
+
