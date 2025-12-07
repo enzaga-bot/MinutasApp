@@ -71,7 +71,15 @@ struct MinutasView: View {
                         NavigationLink(
                             destination: MinutaDetailView(minuta: minuta)
                         ) {
-                            Text(minuta.titulo)
+                            VStack(alignment: .leading, spacing: 4) {
+                                Text(minuta.titulo)
+                                    .font(.headline)
+                                
+                                Text(minuta.fecha)
+                                    .font(.subheadline)
+                                    .foregroundColor(.secondary)
+                            }
+                            .padding(.vertical, 4)
                         }
                     }
                 }

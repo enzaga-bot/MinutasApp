@@ -15,7 +15,7 @@ struct ResumenView: View {
                     .font(.title2)
                     .fontWeight(.semibold)
                 
-                Text("Esta pantalla se usará para mostrar información general de minutas, estadísticas o cualquier resumen que quieras para el proyecto final.")
+                Text("Esta Aplicación iOS ha sido desarrollada en Swift para gestionar minutas y órdenes del día.  Se ha desarrollado como proyecto final de la materia MTW y está pensada como una app sencilla pero estructurada con buenas prácticas (MVVM, vistas reutilizables, consumo de API, etc.).")
                     .font(.body)
                     .foregroundColor(.secondary)
                 
