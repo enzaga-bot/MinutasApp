@@ -16,13 +16,13 @@ struct MinutaDetailView: View {
         ScrollView {
             VStack(alignment: .leading, spacing: 12) {
                 
-                // Título
+// Título
                 Text(minuta.titulo)
                     .font(.title2)
                     .fontWeight(.semibold)
                     .padding(.bottom, 8)
                 
-                // Fecha
+// Fecha
                 HStack {
                     Image(systemName: "calendar")
                     Text(minuta.fecha)
@@ -41,10 +41,10 @@ struct MinutaDetailView: View {
                 Divider()
                     .padding(.vertical, 8)
                 
+// Orden del día
                 // Orden del día
-                Text("Orden del día")
-                    .font(.headline)
-                
+                SectionTitleView(text: "Orden del día")
+
                 ForEach(minuta.ordenDelDia, id: \.self) { punto in
                     HStack(alignment: .top, spacing: 8) {
                         Text("•")
@@ -53,27 +53,25 @@ struct MinutaDetailView: View {
                     }
                 }
                 
-                // Asistentes
-                Text("Asistentes")
-                    .font(.headline)
-                    .padding(.top, 16)
-                
+// Asistentes
+                SectionTitleView(text: "Asistentes")
+
                 ForEach(minuta.asistentes, id: \.self) { asistente in
                     Text("• \(asistente)")
                         .font(.body)
                 }
                 
-                // Acuerdos (solo si existen)
+// Acuerdos (solo si existen)
                 if let acuerdos = minuta.acuerdos, !acuerdos.isEmpty {
-                    Text("Acuerdos")
-                        .font(.headline)
-                        .padding(.top, 16)
+                    SectionTitleView(text: "Acuerdos")
                     
                     ForEach(acuerdos, id: \.self) { acuerdo in
                         Text("• \(acuerdo)")
                             .font(.body)
                     }
                 }
+                
+                
                 
                 Spacer()
             }
