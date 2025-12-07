@@ -13,8 +13,8 @@ struct MinutasAppApp: App {
     var body: some Scene {
         WindowGroup {
             if isLoggedIn {
-                MinutasView(onLogout: {
-                    isLoggedIn = false
+                MainTabView(onLogout: {
+                 isLoggedIn = false
                 })
             } else {
                 LoginView(onLogin: {
