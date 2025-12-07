@@ -24,6 +24,11 @@ struct MainTabView: View {
                 .tabItem {
                     Label("Resumen", systemImage: "chart.bar")
                 }
+            
+            RemoteUsersView()
+                           .tabItem {
+                               Label("Usuarios", systemImage: "person.3")
+                           }
         }
     }
 }
