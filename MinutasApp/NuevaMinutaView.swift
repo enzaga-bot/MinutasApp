@@ -23,13 +23,27 @@ struct NuevaMinutaView: View {
     var body: some View {
         NavigationStack {
             Form {
+//componente reutilizable con @Binding.
                 Section(header: Text("Datos generales")) {
-                    TextField("Fecha", text: $fecha)
-                    TextField("Hora", text: $hora)
+                    LabeledTextField(
+                        title: "Fecha",
+                        placeholder: "Fecha de la reunión",
+                        text: $fecha
+                    )
+                    
+                    LabeledTextField(
+                        title: "Hora",
+                        placeholder: "Horario (ej. 10:30am - 12:00pm)",
+                        text: $hora
+                    )
                 }
                 
                 Section(header: Text("Asistentes")) {
-                    TextField("Escribe los nombres separados por coma", text: $asistentesTexto)
+                    LabeledTextField(
+                        title: "Asistentes",
+                        placeholder: "Nombres separados por coma",
+                        text: $asistentesTexto
+                    )
                 }
                 
                 Section(header: Text("Puntos / Orden del día")) {
