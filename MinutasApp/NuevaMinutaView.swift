@@ -21,7 +21,7 @@ struct NuevaMinutaView: View {
     @State private var acuerdosTexto: String = ""
     
     var body: some View {
-        NavigationView {
+        NavigationStack {
             Form {
                 Section(header: Text("Datos generales")) {
                     TextField("Fecha", text: $fecha)
